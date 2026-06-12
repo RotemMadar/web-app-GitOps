@@ -25,7 +25,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "web-app.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -40,7 +39,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: {{ .Values.envVars.portvar }}
-              value: {{ .Values.envVars.portvalue }}
+              value: {{ .Values.envVars.portvalue | quote }}
           ports:
             - name: http
               containerPort: {{ .Values.envVars.portvalue }}
