@@ -45,13 +45,13 @@ spec:
               value: {{ .Values.envVars.portvalue }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.envVars.portvalue }}
               protocol: TCP
-          {{- with .Values.livenessProbe }}
+          {{- with .Values.probes.liveness }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.readinessProbe }}
+          {{- with .Values.probes.readiness }}
           readinessProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
