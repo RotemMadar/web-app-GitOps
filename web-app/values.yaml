@@ -7,7 +7,7 @@ envVars:
 image:
   repository: rotemmadar/nodejs-web-app
   pullPolicy: IfNotPresent
-  tag: "28"
+  tag: "v1.0.2"
 
 service:
   type: ClusterIP
